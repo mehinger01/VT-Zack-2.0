@@ -24,13 +24,26 @@ updateHUD = function(){
 const zachCreatorBeforeExpansion = renderCreator;
 renderCreator = function(){
   zachCreatorBeforeExpansion();
-  const next=document.querySelector('[data-next]');
-  if(next && next.textContent.includes('FINAL BOSS')) next.textContent='NEW SYSTEM DETECTED →';
 };
+
+function polishContinuationTransitions(){
+  if(Number(state.stage)===8){
+    document.querySelectorAll('[data-next]').forEach(next=>{
+      if(next.textContent.includes('FINAL BOSS')) next.textContent='NEW SYSTEM DETECTED →';
+    });
+  }
+}
+
+const continuationObserver = new MutationObserver(()=>{
+  polishContinuationTransitions();
+  updateHUD();
+});
+if(stage) continuationObserver.observe(stage,{childList:true,subtree:true});
 
 // app.js may have rendered a saved stage before the continuation scripts loaded.
 // Re-render now so stages 9–12 use the expanded sequence immediately after refresh.
 updateHUD();
 if(state.startedAt){
   render();
+  polishContinuationTransitions();
 }
