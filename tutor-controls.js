@@ -1,5 +1,5 @@
 (function setupTutorControls(){
-  const MAX_STAGE = 10;
+  const MAX_STAGE = 12;
   const dock = document.createElement('div');
   dock.className = 'tutor-dock';
   dock.innerHTML = `
@@ -7,7 +7,7 @@
     <div class="tutor-panel" id="tutorPanel" hidden>
       <div class="tutor-panel-head">
         <strong>Tutor Controls</strong>
-        <span id="tutorStepLabel">Lesson 1 • Step 1 of 11</span>
+        <span id="tutorStepLabel">Challenge Lab • Step 1 of 13</span>
       </div>
       <div class="tutor-nav-row">
         <button id="tutorHome">⌂ Home</button>
@@ -28,7 +28,7 @@
 
   function updateControls(){
     const current = Math.max(0, Math.min(Number(state.stage) || 0, MAX_STAGE));
-    label.textContent = `Lesson 1 • Step ${current + 1} of ${MAX_STAGE + 1}`;
+    label.textContent = `Challenge Lab • Step ${current + 1} of ${MAX_STAGE + 1}`;
     prevBtn.disabled = current <= 0;
     nextBtn.disabled = current >= MAX_STAGE;
   }
