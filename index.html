@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#16213e" />
+  <title>Zach's Challenge Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="lab-mark" aria-hidden="true">⚡</div>
+        <div>
+          <div class="eyebrow">ZACH 2.0</div>
+          <h1>Challenge Lab</h1>
+        </div>
+      </div>
+      <div class="status-cluster">
+        <div class="mini-status"><span>🧠</span><strong id="brainPoints">0</strong></div>
+        <div class="mini-status"><span>💡</span><strong id="hintCount">3</strong></div>
+        <button id="soundToggle" class="icon-btn" aria-label="Toggle sound">🔊</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero-card">
+        <div class="signal-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <p class="system-label">SYSTEM ALERT</p>
+        <h2>The Challenge Lab is locked.</h2>
+        <p>Six systems failed overnight. Nobody knows exactly how to fix them.</p>
+        <div class="candidate-card">
+          <span class="candidate-icon">🧑‍🚀</span>
+          <div>
+            <small>CANDIDATE DETECTED</small>
+            <strong>ZACH</strong>
+          </div>
+        </div>
+        <button id="enterLab" class="primary-btn giant">ENTER LAB <span>→</span></button>
+      </section>
+
+      <section id="missionHub" class="mission-hub hidden" aria-live="polite">
+        <div class="hub-heading">
+          <div>
+            <p class="system-label">MISSION 01</p>
+            <h2>New Doesn't Mean Impossible</h2>
+          </div>
+          <div class="progress-wrap" aria-label="Mission progress">
+            <span id="progressText">0 / 7 systems</span>
+            <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+          </div>
+        </div>
+
+        <div id="toolbelt" class="toolbelt hidden">
+          <button data-tool="look"><span>👀</span><b>LOOK</b><small>What do I notice?</small></button>
+          <button data-tool="think"><span>🧠</span><b>THINK</b><small>What might work?</small></button>
+          <button data-tool="try"><span>🚀</span><b>TRY</b><small>Pick one idea.</small></button>
+          <button data-tool="check"><span>🔍</span><b>CHECK</b><small>What happened?</small></button>
+          <button data-tool="turtle" class="turtle-tool"><span>🐢</span><b>TURTLE</b><small>Pause. Reset. Choose.</small></button>
+        </div>
+
+        <div id="stage" class="stage"></div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status"></div>
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-card">
+        <button id="modalClose" class="modal-close" aria-label="Close">×</button>
+        <div id="modalIcon" class="modal-icon">🧠</div>
+        <h3 id="modalTitle">Tool</h3>
+        <p id="modalText"></p>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
