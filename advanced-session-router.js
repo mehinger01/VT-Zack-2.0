@@ -1,4 +1,4 @@
-// Router for Zach 2.0 Sessions 5–12.
+// Router for Zach 2.0 Sessions 4–12.
 (function(){
   state.programSession = Number(state.programSession || 1);
   state.sessionStep = Number(state.sessionStep || 0);
@@ -38,12 +38,12 @@
 
   window.zachAdvancedSessionInfo = function(){
     const spec=window.ZACH_SESSIONS[state.programSession];
-    if(!spec) return null;
+    if(!spec || state.programSession<4) return null;
     return {session:state.programSession,title:spec.title,step:state.sessionStep||0,total:spec.stages.length};
   };
 
   updateHUD = function(){
-    if(state.programSession>=5 && window.ZACH_SESSIONS[state.programSession]){
+    if(state.programSession>=4 && window.ZACH_SESSIONS[state.programSession]){
       const spec=window.ZACH_SESSIONS[state.programSession];
       $('#brainPoints').textContent=state.brainPoints;
       $('#hintCount').textContent=state.hints;
@@ -56,7 +56,7 @@
   };
 
   render = function(){
-    if(state.programSession>=5 && window.ZACH_SESSIONS[state.programSession]){
+    if(state.programSession>=4 && window.ZACH_SESSIONS[state.programSession]){
       const spec=window.ZACH_SESSIONS[state.programSession];
       const step=Math.max(0,Math.min(state.sessionStep||0,spec.stages.length-1));
       state.sessionStep=step;
@@ -83,6 +83,5 @@
     baseRender();
   };
 
-  // Re-render saved advanced-session state after scripts load.
-  if(state.startedAt && state.programSession>=5){render();}
+  if(state.startedAt && state.programSession>=4){render();}
 })();
