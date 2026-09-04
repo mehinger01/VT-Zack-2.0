@@ -12,6 +12,7 @@
       <label class="tutor-session-label" for="tutorSessionSelect">Open session</label>
       <select id="tutorSessionSelect" class="tutor-session-select">
         <option value="1">Challenge Lab / current arc</option>
+        <option value="4">Session 4 — Focus Under Load</option>
         <option value="5">Session 5 — Change the Plan</option>
         <option value="6">Session 6 — Hint Economy</option>
         <option value="7">Session 7 — Plan It Yourself</option>
@@ -71,7 +72,7 @@
 
   select.onchange=()=>{
     const n=Number(select.value);
-    if(n>=5 && typeof window.zachSetProgramSession==='function'){
+    if(n>=4 && typeof window.zachSetProgramSession==='function'){
       window.zachSetProgramSession(n);
     }else{
       state.programSession=1;state.sessionStep=0;save();showLesson();
