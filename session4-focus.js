@@ -88,6 +88,9 @@ window.ZACH_SESSIONS[4] = {
       document.querySelectorAll('[data-test]').forEach(b=>b.onclick=()=>{tested.add(b.dataset.test);b.classList.add('tested');refresh();});
       document.querySelectorAll('[data-diagnose]').forEach(b=>b.onclick=()=>{
         if(tested.size<2){$('#s4DiagFeed').innerHTML='<div class="response-box">That is a guess. Gather enough evidence to defend the diagnosis.</div>';return;}
+        if(b.dataset.diagnose==='sensor' && !tested.has('sensor')){
+          $('#s4DiagFeed').innerHTML='<div class="response-box">That might be right, but you have not tested the sensor yet. A diagnosis needs direct evidence.</div>';return;
+        }
         if(b.dataset.diagnose==='sensor'){
           adv.note('diagnosis',{tested:[...tested],answer:'sensor'});
           $('#s4DiagFeed').innerHTML=`<div class="response-box success-box"><b>Confirmed.</b> The sensor test explains the exact symptom. You noticed what was wrong, checked possibilities, and identified the cause.</div>${adv.next('MISSION CONTROL →')}`;
@@ -125,7 +128,7 @@ window.ZACH_SESSIONS[4] = {
         'ENDURANCE'
       ) + `
       <div class="challenge-panel">
-        <div class="reading-card">A research drone must visit exactly three stations. Station A must come before C. Station B cannot be first. Station D is closed. Which order works?</div>
+        <div class="reading-card">A research drone must visit exactly three stations. Station A must come before C. Station B must be between A and C. Station D is closed. Which order works?</div>
         <div class="choice-grid" id="s4EndChoices">
           ${adv.choice('ABC','1️⃣','A → B → C','Check every rule.')}
           ${adv.choice('BAC','2️⃣','B → A → C','Check every rule.')}
@@ -138,7 +141,7 @@ window.ZACH_SESSIONS[4] = {
       document.querySelectorAll('#s4EndChoices [data-choice]').forEach(b=>b.onclick=()=>{
         if(b.dataset.choice==='ABC'){
           adv.note('enduranceSolved',Date.now());
-          $('#s4EndFeed').innerHTML=`<div class="response-box success-box"><b>Mission solved.</b> A is before C, B is not first, and D is not used.</div>${adv.next('DEBRIEF →')}`;
+          $('#s4EndFeed').innerHTML=`<div class="response-box success-box"><b>Mission solved.</b> A comes before C, B is between A and C, and D is not used.</div>${adv.next('DEBRIEF →')}`;
           adv.complete('endurance',6);adv.bindNext();
         } else $('#s4EndFeed').innerHTML='<div class="response-box">One rule is being broken. Check each condition one at a time.</div>';
       });
