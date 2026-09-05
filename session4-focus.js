@@ -128,7 +128,7 @@ window.ZACH_SESSIONS[4] = {
         'ENDURANCE'
       ) + `
       <div class="challenge-panel">
-        <div class="reading-card">A research drone must visit exactly three stations. Station A must come before C. Station B must be between A and C. Station D is closed. Which order works?</div>
+        <div class="reading-card">A research drone must visit exactly three stations. <b>A must be first. B must be visited immediately after A. C must be last. Station D is closed.</b> Which route follows every rule?</div>
         <div class="choice-grid" id="s4EndChoices">
           ${adv.choice('ABC','1️⃣','A → B → C','Check every rule.')}
           ${adv.choice('BAC','2️⃣','B → A → C','Check every rule.')}
@@ -141,7 +141,7 @@ window.ZACH_SESSIONS[4] = {
       document.querySelectorAll('#s4EndChoices [data-choice]').forEach(b=>b.onclick=()=>{
         if(b.dataset.choice==='ABC'){
           adv.note('enduranceSolved',Date.now());
-          $('#s4EndFeed').innerHTML=`<div class="response-box success-box"><b>Mission solved.</b> A comes before C, B is between A and C, and D is not used.</div>${adv.next('DEBRIEF →')}`;
+          $('#s4EndFeed').innerHTML=`<div class="response-box success-box"><b>Mission solved.</b> A is first, B comes immediately after A, C is last, and D stays closed.</div>${adv.next('DEBRIEF →')}`;
           adv.complete('endurance',6);adv.bindNext();
         } else $('#s4EndFeed').innerHTML='<div class="response-box">One rule is being broken. Check each condition one at a time.</div>';
       });
